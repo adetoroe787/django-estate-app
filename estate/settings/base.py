@@ -1,24 +1,23 @@
 import environ
 
-
 from pathlib import Path
 
 env = environ.Env(
-    DEBUG=(bool, False)
+    DEBUG = (bool, False)
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 environ.Env.read_env(BASE_DIR / ".env")
 
-
 SECRET_KEY = env("SECRET_KEY")
-
 
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 
+
+# Application definition
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -50,6 +49,7 @@ LOCAL_APPS = [
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
+ 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,7 +81,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'estate.wsgi.application'
 
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -97,9 +96,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Africa/Lagos'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -112,6 +113,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIR = []
 MEDIA_URL = "/mediafiles/"
 MEDIA_ROOT = BASE_DIR / "mediafiles"
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
